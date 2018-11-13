@@ -19,7 +19,7 @@ export class InicioPage {
   constructor(
     public navCtrl: NavController,
     public restProvider: RestProvider
-  ) { this.getUsers()}
+  ) { }
   getUsers() {
     this.restProvider.getUsers(2).then(data => {
       this.users = data;
@@ -28,10 +28,11 @@ export class InicioPage {
   }
   login() {
     let data = { email: this.correo, password: this.password };
-    this.restProvider.login(data).then(data => {
+    return new Promise((resolve,reject) =>{ this.restProvider.login(data).then(data => {
       this.users = data;
       console.log(this.users);
-    });
+      resolve();
+    }).catch(a => console.log("401")); })
   }
   goToRegistro(params) {
     if (!params) params = {};
@@ -43,9 +44,11 @@ export class InicioPage {
     this.navCtrl.push(InicioPage);
   }
   goToBuscar(params) {
-    this.login();
+    this.login().then(a => {
+    this.getUsers();
     if (!params) params = {};
-    this.navCtrl.setRoot(BuscarPage);
+    this.navCtrl.setRoot(BuscarPage);}
+    )
   }
   goToMatematicas(params) {
     if (!params) params = {};
@@ -60,3 +63,4 @@ export class InicioPage {
     this.navCtrl.push(ChatPage);
   }
 }
+

@@ -18,10 +18,10 @@ export class RestProvider {
   getUsers(id) {
     return new Promise(resolve => {
       this.http
-        .get(this.apiUrl + '/students/' + id, {
+        .get(this.apiUrl + 'students/' + id, {
           headers: new HttpHeaders().set(
             'Authorization',
-            'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1NDIxNjM4NzB9.ODSj-Gsta_2qrjyhRjDTzjnZBWwlsRXPveFWoeqMSgg'
+            this.token.auth_token
           )
         })
         .subscribe(data => {
@@ -32,7 +32,7 @@ export class RestProvider {
           });
     });
   }
-  getUser(data) {
+  /* getUser(data) {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl + '/students', JSON.stringify(data), {
         headers: new HttpHeaders().set('Authorization', 'my-token-de-autoriazación'),
@@ -45,7 +45,7 @@ export class RestProvider {
         });
     });
   }
-  login(data) {
+ */  login(data) {
     return new Promise((resolve, reject) => {
       this.http
         .post(this.apiUrl + 'auth/login', data)
@@ -55,7 +55,7 @@ export class RestProvider {
             resolve(res);
           },
           err => {
-            reject(err);
+            console.log(err);
           }
         );
     });
