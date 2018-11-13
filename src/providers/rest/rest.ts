@@ -9,34 +9,40 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class RestProvider {
-  //apiUrl = 'https://tutorme-api.herokuapp.com/';
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = 'https://tutorme-api.herokuapp.com/';
+  //apiUrl = 'http://localhost:3000/';
   token:any;
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
-  getUsers() {
+  getUsers(id) {
     return new Promise(resolve => {
-      this.http.get(this.apiUrl + '/users').subscribe(
-        data => {
-          resolve(data);
-        },
-        err => {
-          console.log(err);
-        }
-      );
+      this.http
+        .get(this.apiUrl + '/students/' + id, {
+          headers: new HttpHeaders().set(
+            'Authorization',
+            'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1NDIxNjM4NzB9.ODSj-Gsta_2qrjyhRjDTzjnZBWwlsRXPveFWoeqMSgg'
+          )
+        })
+        .subscribe(data => {
+          console.log(data);
+            resolve(data);
+          }, err => {
+            console.log(err);
+          });
     });
   }
-  addUser(data) {
+  getUser(data) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/users', "email=test&password=123456").subscribe(
-        res => {
+      this.http.post(this.apiUrl + '/students', JSON.stringify(data), {
+        headers: new HttpHeaders().set('Authorization', 'my-token-de-autoriazación'),
+        params: new HttpParams().set('id', '3'),
+      })
+        .subscribe(res => {
           resolve(res);
-        },
-        err => {
+        }, (err) => {
           reject(err);
-        }
-      );
+        });
     });
   }
   login(data) {

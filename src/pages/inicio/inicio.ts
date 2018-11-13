@@ -19,9 +19,9 @@ export class InicioPage {
   constructor(
     public navCtrl: NavController,
     public restProvider: RestProvider
-  ) {}
+  ) { this.getUsers()}
   getUsers() {
-    this.restProvider.getUsers().then(data => {
+    this.restProvider.getUsers(2).then(data => {
       this.users = data;
       console.log(this.users);
     });
