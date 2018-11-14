@@ -11,10 +11,16 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class BuscarPage {
   subjects:any;
+  topics:any;
   constructor(public navCtrl: NavController, public restProvider: RestProvider) {
     this.getSubjects();
+    
   }
-  
+  getTopics(id){
+    this.restProvider.getTopics(id).then(data => {
+      this.topics = data;
+    });
+  }
   goToMatematicas(params){
     if (!params) params = {};
     this.navCtrl.push(MatematicasPage);

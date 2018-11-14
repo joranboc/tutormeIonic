@@ -16,6 +16,20 @@ import { HttpClientModule} from '@angular/common/http'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
+import { FireBaseProvider } from '../providers/fire-base/fire-base';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyBh5VhXZuwkfctGA714tdprAUzTYTpLTt8",
+  authDomain: "tutorme-71493.firebaseapp.com",
+  databaseURL: "https://tutorme-71493.firebaseio.com",
+  projectId: "tutorme-71493",
+  storageBucket: "",
+  messagingSenderId: "287760964599"
+};
 
 @NgModule({
   declarations: [
@@ -33,7 +47,9 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,7 +68,9 @@ import { RestProvider } from '../providers/rest/rest';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    FireBaseProvider,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}
