@@ -24,7 +24,7 @@ export class RegistroPage {
   correo: string = '';
   tipo: boolean;
   password: string = '';
-  registro() {
+  registroEstudiante() {
     let data = { name: this.nombre + " " + this.apellido, carreer: this.profesion, email: this.correo, password: this.password };
     return new Promise((resolve, reject) => {
       this.restProvider
@@ -36,11 +36,30 @@ export class RegistroPage {
         .catch(a => console.log('401'));
     })
   }
+  registroTutor() {
+    let data = { name: this.nombre + " " + this.apellido, carreer: this.profesion, email: this.correo, password: this.password };
+    return new Promise((resolve, reject) => {
+      this.restProvider
+        .registrarTutor(data)
+        .then(data => {
+          console.log(data);
+          resolve();
+        })
+        .catch(a => console.log('401'));
+    })
+  }
   goToInicio(params) {
-    this.registro().then(a => {
+    if(this.tipo){
+    this.registroTutor().then(a => {
       if (!params) params = {};
       this.navCtrl.push(InicioPage);
-    });
+    });}
+    else{
+      this.registroEstudiante().then(a => {
+        if (!params) params = {};
+        this.navCtrl.push(InicioPage);
+      });
+    }
 
   }
   goToRegistro(params) {
