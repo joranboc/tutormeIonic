@@ -1,3 +1,4 @@
+import { RestProvider } from './../../providers/rest/rest';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { InicioPage } from '../inicio/inicio';
@@ -11,25 +12,55 @@ import { ChatPage } from '../chat/chat';
   templateUrl: 'registro.html'
 })
 export class RegistroPage {
+  constructor(
+    public navCtrl: NavController,
+    public restProvider: RestProvider
+  ) {}
 
-  constructor(public navCtrl: NavController) {
+  nombre: string = '';
+  apellido: string = '';
+  fechaNacimiento: string = '';
+  profesion: string = '';
+  correo: string = '';
+  tipo: boolean;
+  password: string = '';
+  registro() {
+    let data = { name: this.nombre + " " + this.apellido, carreer: this.profesion, email: this.correo, password: this.password };
+    return new Promise((resolve, reject) => {
+      this.restProvider
+        .registrarEstudiante(data)
+        .then(data => {
+          console.log(data);
+          resolve();
+        })
+        .catch(a => console.log('401'));
+    })
   }
-  goToInicio(params){
-    if (!params) params = {};
-    this.navCtrl.push(InicioPage);
-  }goToRegistro(params){
+  goToInicio(params) {
+    this.registro().then(a => {
+      if (!params) params = {};
+      this.navCtrl.push(InicioPage);
+    });
+
+  }
+  goToRegistro(params) {
+
     if (!params) params = {};
     this.navCtrl.push(RegistroPage);
-  }goToBuscar(params){
+  }
+  goToBuscar(params) {
     if (!params) params = {};
     this.navCtrl.push(BuscarPage);
-  }goToMatematicas(params){
+  }
+  goToMatematicas(params) {
     if (!params) params = {};
     this.navCtrl.push(MatematicasPage);
-  }goToTutor(params){
+  }
+  goToTutor(params) {
     if (!params) params = {};
     this.navCtrl.push(TutorPage);
-  }goToChat(params){
+  }
+  goToChat(params) {
     if (!params) params = {};
     this.navCtrl.push(ChatPage);
   }

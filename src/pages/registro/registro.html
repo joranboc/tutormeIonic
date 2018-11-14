@@ -7,43 +7,43 @@
       <ion-label>
         Nombres
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" id="input" [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" ></ion-input>
     </ion-item>
     <ion-item id="registro-input4">
       <ion-label>
         Apellido
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" id="input" [(ngModel)]="apellido" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item id="registro-input5">
       <ion-label stacked>
         Fecha de nacimiento
       </ion-label>
-      <ion-input type="date" placeholder=""></ion-input>
+      <ion-input type="date" placeholder="" id="input" [(ngModel)]="fechaNacimiento" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item id="registro-input6">
       <ion-label>
         Profesion
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" placeholder="" id="input" [(ngModel)]="profesion" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item id="registro-input8">
       <ion-label>
         Correo
       </ion-label>
-      <ion-input type="email" placeholder=""></ion-input>
+      <ion-input type="email" placeholder="" id="input" [(ngModel)]="correo" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
     <ion-item id="registro-checkbox1">
       <ion-label>
         Tutor
       </ion-label>
-      <ion-checkbox></ion-checkbox>
+      <ion-checkbox  [(ngModel)]="tipo" [ngModelOptions]="{standalone: true}"></ion-checkbox>
     </ion-item>
     <ion-item id="registro-input11">
       <ion-label>
         Contraseña
       </ion-label>
-      <ion-input type="password" placeholder=""></ion-input>
+      <ion-input type="password" placeholder="" id="input" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
   </form>
   <button id="registro-button4" ion-button color="positive" block on-click="goToInicio()">

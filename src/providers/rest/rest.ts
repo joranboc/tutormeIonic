@@ -15,17 +15,31 @@ export class RestProvider {
   constructor(public http: HttpClient) {
     console.log('Hello RestProvider Provider');
   }
+
+  registrarEstudiante(data) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.apiUrl + 'students', data)
+        .subscribe(
+          res => {
+            this.guardarToken(res);
+            resolve(res);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    });
+  }
+
   getUsers(id) {
     return new Promise(resolve => {
       this.http
-        .get(this.apiUrl + 'students/' + id, {
-          headers: new HttpHeaders().set(
-            'Authorization',
-            this.token.auth_token
-          )
+        .get(this.apiUrl + 'students', {
+          headers: new HttpHeaders().set('Authorization', this.obtenerToken())
         })
         .subscribe(data => {
-          console.log(data);
+            console.log(data);
             resolve(data);
           }, err => {
             console.log(err);
@@ -51,7 +65,7 @@ export class RestProvider {
         .post(this.apiUrl + 'auth/login', data)
         .subscribe(
           res => {
-            this.token = res;
+            this.guardarToken(res);
             resolve(res);
           },
           err => {
@@ -59,5 +73,19 @@ export class RestProvider {
           }
         );
     });
+  }
+
+  registrarTutor(){
+
+  }
+  guardarToken(token){
+    localStorage.setItem("token", token.auth_token);
+  }
+  obtenerToken(){
+    return localStorage.getItem("token")
+  }
+
+  cerrarSesion(){
+    localStorage.clear();
   }
 }

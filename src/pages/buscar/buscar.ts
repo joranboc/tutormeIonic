@@ -15,7 +15,8 @@ export class BuscarPage {
   goToMatematicas(params){
     if (!params) params = {};
     this.navCtrl.push(MatematicasPage);
-  }goToTutor(params){
+  }
+  goToTutor(params){
     if (!params) params = {};
     this.navCtrl.push(TutorPage);
   }goToChat(params){
