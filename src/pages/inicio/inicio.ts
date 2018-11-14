@@ -21,7 +21,7 @@ export class InicioPage {
     public restProvider: RestProvider
   ) { }
   getUsers() {
-    this.restProvider.getUsers(2).then(data => {
+    this.restProvider.getUsers().then(data => {
       this.users = data;
       console.log(this.users);
     });

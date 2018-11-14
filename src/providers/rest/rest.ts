@@ -32,7 +32,7 @@ export class RestProvider {
     });
   }
 
-  getUsers(id) {
+  getUsers() {
     return new Promise(resolve => {
       this.http
         .get(this.apiUrl + 'students', {
@@ -59,6 +59,20 @@ export class RestProvider {
             console.log(err);
           }
         );
+    });
+  }
+  getSubjects() {
+    return new Promise(resolve => {
+      this.http
+        .get(this.apiUrl + 'subjects', {
+          headers: new HttpHeaders().set('Authorization', this.obtenerToken())
+        })
+        .subscribe(data => {
+            console.log(data);
+            resolve(data);
+          }, err => {
+            console.log(err);
+          });
     });
   }
   /* getUser(data) {
