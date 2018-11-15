@@ -89,6 +89,20 @@ export class RestProvider {
           });
     });
   }
+  getTutores(id){
+    return new Promise(resolve => {
+      this.http
+        .get(this.apiUrl + 'topics/tutors/'+id, {
+          headers: new HttpHeaders().set('Authorization', this.obtenerToken())
+        })
+        .subscribe(data => {
+            console.log(data);
+            resolve(data);
+          }, err => {
+            console.log(err);
+          });
+    });
+  }
   /* getUser(data) {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl + '/students', JSON.stringify(data), {

@@ -21,9 +21,10 @@ export class BuscarPage {
       this.topics = data;
     });
   }
-  goToMatematicas(params){
-    if (!params) params = {};
-    this.navCtrl.push(MatematicasPage);
+  goToMatematicas(id,name){
+    id = id
+    name = name
+    this.navCtrl.push(MatematicasPage,{data: id,name: name});
   }
   goToTutor(params){
     if (!params) params = {};

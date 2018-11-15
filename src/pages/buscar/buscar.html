@@ -47,7 +47,7 @@
       <h2>{{ subject.name | uppercase }}</h2>
     </ion-item>
       <ion-list *ngFor="let topic of topics"  >
-          <ion-item  *ngIf="topic.id == subject.id">
+          <ion-item  *ngIf="topic.subject_id == subject.id" on-click="goToMatematicas(topic.id,topic.name)">
             <h2 >{{ topic.name | uppercase }}</h2>
                   
           </ion-item>

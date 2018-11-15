@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      Matematicas
+      {{topicName}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -12,7 +12,17 @@
   <h4 id="matematicas-heading2" style="color:#E40000;">
     Tutores
   </h4>
-  <ion-list id="matematicas-list7">
+  <ion-list id="matematicas-list7" *ngFor="let tutor of tutores">
+    <ion-item color="balanced" on-click="goToTutor()" id="matematicas-list-item17">
+      <ion-avatar item-left>
+        <img />
+      </ion-avatar>
+      <h2>
+        {{tutor.name}}
+      </h2>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-list id="matematicas-list7">
     <ion-item color="balanced" on-click="goToTutor()" id="matematicas-list-item17">
       <ion-avatar item-left>
         <img />
@@ -37,5 +47,5 @@
         Alejandra XXXX
       </h2>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
