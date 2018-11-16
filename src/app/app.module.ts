@@ -1,3 +1,4 @@
+import { CrearTemaPage } from './../pages/crear-tema/crear-tema';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -42,7 +43,8 @@ export const firebaseConfig = {
     ChatPage,
     ChatTutorPage,
     ChatActivosPage,
-    OfertasPage
+    OfertasPage,
+    CrearTemaPage
   ],
   imports: [
     BrowserModule,
@@ -62,12 +64,13 @@ export const firebaseConfig = {
     ChatPage,
     ChatTutorPage,
     ChatActivosPage,
-    OfertasPage
+    OfertasPage,
+    CrearTemaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     RestProvider,
     FireBaseProvider,
     AngularFireDatabase

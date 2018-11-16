@@ -61,6 +61,7 @@ export class RestProvider {
         );
     });
   }
+
   getSubjects() {
     return new Promise(resolve => {
       this.http
@@ -87,6 +88,23 @@ export class RestProvider {
           }, err => {
             console.log(err);
           });
+    });
+  }
+  crearTema(data) {
+    var idSubject = data.id;
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.apiUrl + 'subjects/' + idSubject + "/topics", data, {
+          headers: new HttpHeaders().set('Authorization', this.obtenerToken())
+        })
+        .subscribe(
+          res => {
+            resolve(res);
+          },
+          err => {
+            console.log(err);
+          }
+        );
     });
   }
   getTutores(id){
@@ -132,7 +150,7 @@ export class RestProvider {
     });
   }
 
-  
+
   guardarToken(token){
     localStorage.setItem("token", token.auth_token);
   }

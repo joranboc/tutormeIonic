@@ -41,17 +41,17 @@
   </ion-list> -->
 
   <ion-list>
-    <ion-item *ngFor="let subject of subjects">
+    <ion-item  color="light" *ngFor="let subject of subjects">
         <ion-icon name="book" item-left></ion-icon>
         <ion-item color="none" on-click="getTopics(subject.id)" id="buscar-list-item13">
       <h2>{{ subject.name | uppercase }}</h2>
     </ion-item>
-      <ion-list *ngFor="let topic of topics"  >
+      <ion-list *ngFor="let topic of topics"  inset>
           <ion-item  *ngIf="topic.subject_id == subject.id" on-click="goToMatematicas(topic.id,topic.name)">
             <h2 >{{ topic.name | uppercase }}</h2>
-                  
+
           </ion-item>
-        </ion-list>            
+        </ion-list>
     </ion-item>
   </ion-list>
 </ion-content>

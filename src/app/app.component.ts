@@ -14,6 +14,7 @@ import { ChatTutorPage } from '../pages/chat-tutor/chat-tutor';
 
 import { InicioPage } from '../pages/inicio/inicio';
 import { FireBaseProvider } from '../providers/fire-base/fire-base';
+import { CrearTemaPage } from '../pages/crear-tema/crear-tema';
 
 
 
@@ -53,5 +54,9 @@ export class MyApp {
   }goToChatTutor(params){
     if (!params) params = {};
     this.navCtrl.setRoot(ChatTutorPage);
+  }
+  crearTema(params) {
+    if (!params) params = {};
+    this.navCtrl.setRoot(CrearTemaPage);
   }
 }
